@@ -21,6 +21,7 @@ import {
 
 
 import  CHLoading ,{Loading} from 'react-native-ch-loading'
+import CHDefalutAlertModal from "./CHDefalutAlertModal";
 
 
 
@@ -47,7 +48,9 @@ class App extends React.Component{
 
         this.showLoading()
       }
-      if (item==='defaultAlert'){
+      if (item==="defaultAlert"){
+
+            console.log("dddj")
         this.defaultAlert()
       }
 
@@ -55,7 +58,8 @@ class App extends React.Component{
     }
 
     defaultAlert(){
-    
+
+        this.sureUrgeModel.show()
     }
     /**
      *  显示loading
@@ -92,6 +96,10 @@ class App extends React.Component{
 
       )
     }
+
+    sureUrgeModelCallBack(){
+
+    }
     render(){
         return(
 
@@ -103,6 +111,12 @@ class App extends React.Component{
 
                 />
               <CHLoading/>
+                <CHDefalutAlertModal
+                    ref={(self)=>this.sureUrgeModel=self}
+                    titleName={'温馨提示'}
+                    contentTitle={'是否确定需要催办'}
+                    callBack={()=>this.sureUrgeModelCallBack()}
+                />
             </View>
 
         )
