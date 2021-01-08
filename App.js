@@ -21,7 +21,7 @@ import {
 
 
 import  CHLoading ,{Loading} from 'react-native-ch-loading'
-import CHDefalutAlertModal from "./CHDefalutAlertModal";
+import CHAlert, {CHAlertModal} from "./CHAlertModal";
 
 
 
@@ -50,7 +50,6 @@ class App extends React.Component{
       }
       if (item==="defaultAlert"){
 
-            console.log("dddj")
         this.defaultAlert()
       }
 
@@ -59,7 +58,30 @@ class App extends React.Component{
 
     defaultAlert(){
 
-        this.sureUrgeModel.show()
+        CHAlert
+            .show()
+            .setTitleName("弹出框")
+            .setTitleColor('#f0f')
+            .setTitleSize(16)
+            .setContentTitle("内容内容内容内容dfdfdffdfdsdfsddfsfdsfdsfsdfsdfddsdfnmndfmfdsfdsndfdf内容内容内容内容内容内容内容内容内容内容内容内容内容内容ddddd")
+            .setContentColor('#f0f')
+            .setContentSize(18)
+            .setAlertBgColor('#fff')
+            .setSureTitle("右边")
+            .setCancelTitle("左边")
+
+        CHAlert.sureCallBack(function () {
+            console.log("----点击了-----")
+            CHAlert.hide()
+        })
+
+        CHAlert.cancelCallBack(function () {
+
+            CHAlert.hide()
+            console.log("-------点击了取消----")
+        })
+
+
     }
     /**
      *  显示loading
@@ -111,10 +133,9 @@ class App extends React.Component{
 
                 />
               <CHLoading/>
-                <CHDefalutAlertModal
-                    ref={(self)=>this.sureUrgeModel=self}
+                <CHAlertModal
+                    // ref={(self)=>this.sureUrgeModel=self}
                     titleName={'温馨提示'}
-                    contentTitle={'是否确定需要催办'}
                     callBack={()=>this.sureUrgeModelCallBack()}
                 />
             </View>
