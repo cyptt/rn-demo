@@ -117,14 +117,63 @@ export default {
         alert.setAlertBgColor(color)
         return this
     },
+
+    /**
+     * 点击空白地方是否隐藏弹出框
+     * @param isHide
+     */
+    setIsBlankHide:function(isHide){
+
+        alert.setIsBlankHide(isHide)
+        return this;
+    },
+
+    /**
+     * 设置确定按钮title
+     * @param title
+     * @returns {default}
+     */
     setSureTitle:function(title){
 
         alert.setSureTitle(title)
         return this
     },
-
+    setSureTitleColor:function(title){
+        alert.setSureTitleColor(title)
+        return this
+    },
+    setSureTitleSize:function(size){
+        alert.setSureTitleSize(size)
+        return this
+    },
+    setSureBgColor:function(color){
+        alert.setSureBgColor(color)
+        return this
+    },
+    /**
+     * 设置取消按钮title
+     * @param title
+     * @returns {default}
+     */
     setCancelTitle:function(title){
         alert.setCancelTitle(title)
+        return this
+    },
+    setCancelTitleColor:function(color){
+        alert.setCancelTitleColor(color)
+        return this
+    },
+    setCancelTitleSize:function(size){
+      alert.setCancelTitleSize(size)
+        return this
+    },
+    setCancelBorderColor:function(color){
+
+        alert.setCancelBorderColor(color)
+        return this
+    },
+    setHideLeftBtn:function(isHide){
+        alert.setIsBlankHide(isHide)
         return this
     },
 
@@ -147,8 +196,15 @@ export class CHAlertModal extends Component {
         contentSize:PropTypes.int,           //设置content 字体大小
         isBlank:PropTypes.boolean  ,  // 点击空白是否关闭弹出框
         cancelTitle:PropTypes.string ,      //取消按钮内容
+        cancelTitleColor:PropTypes.string,   //取消按钮字体颜色
+        cancelTitleSize:PropTypes.int,    // 取消按钮字体大小
+        cancelBorderColor:PropTypes.string,  //取消按钮border 颜色
         sureTitle:PropTypes.string  ,       //确定按钮内容
+        sureTitleColor:PropTypes.string,   //确定按钮字体颜色
+        sureTitleSize:PropTypes.int,       //确定按钮字体大小
+        sureBgColor:PropTypes.string,        //确定按钮背景颜色
         alertBgColor:PropTypes.string,     //alert背景颜色
+        hideLeftBtn:PropTypes.boolean,     //是否隐藏左边按钮
 
     }
     constructor(props){
@@ -162,13 +218,21 @@ export class CHAlertModal extends Component {
             contentColor:this.props.contentColor?this.props.contentColor:'#000',
             contentSize:this.props.contentSize?this.props.contentSize:15,
             isBlank:this.props.isBlank?this.props.isBlank:false,
-            cancelTitle:this.props.cancelTitle?this.props.cancelTitle:'取消',
             sureTitle:this.props.sureTitle?this.props.sureTitle:"确定",
+            sureTitleColor:this.props.sureTitleColor?this.props.sureTitleColor:'fff',
+            sureTitleSize:this.props.sureTitleSize?this.props.sureTitleSize:15,
+            sureBgColor:this.props.sureBgColor?this.props.sureBgColor:'#148BFA',
+            cancelTitle:this.props.cancelTitle?this.props.cancelTitle:'取消',
+            cancelTitleColor:this.props.cancelTitleColor?this.props.cancelTitleColor:'#8C8C8C',
+            cancelTitleSize:this.props.cancelTitleSize?this.props.cancelTitleSize:15,
+            cancelBorderColor:this.props.cancelBorderColor?this.props.cancelBorderColor:'#D0D0D0',
             alertBgColor:this.props.alertBgColor?this.props.alertBgColor:'#fff',
+            hideLeftBtn:this.props.hideLeftBtn?this.props.hideLeftBtn:false,
 
 
-            sureCallBack:null,
-            cancelCallBack:null
+
+            sureCallBack:null,       //点击右边成功按钮回调的方法
+            cancelCallBack:null      //点击左边按钮回调的方法
         }
 
 
@@ -190,12 +254,19 @@ export class CHAlertModal extends Component {
             contentTitle:'',
             isBlank:false,
             cancelTitle:'取消',
+            cancelTitleColor:'#8C8C8C',
+            cancelTitleSize:15,
+            cancelBorderColor:'D0D0D0',
             sureTitle:"确定",
+            sureTitleColor:'#fff',
+            sureTitleSize:15,
+            sureBgColor:'#148BFA',
             titleColor:'#2F3335',
             titleSize:16,
             contentColor:'#000',
             contentSize:15,
-            alertBgColor:'#fff'
+            alertBgColor:'#fff',
+            hideLeftBtn:false
         })
     }
 
@@ -255,9 +326,10 @@ export class CHAlertModal extends Component {
             alertBgColor:color
         })
     }
-    setSureTitle(title){
+
+    setIsBlankHide(isHide){
         this.setState({
-            sureTitle:title
+            hideLeftBtn:isHide
         })
     }
     setCancelTitle(title){
@@ -266,6 +338,46 @@ export class CHAlertModal extends Component {
         })
     }
 
+    setCancelTitleColor(color){
+        this.setState({
+            cancelTitleColor:color
+        })
+    }
+    setCancelTitleSize(size){
+        this.setState({
+            cancelTitleSize:size
+        })
+    }
+    setCancelBorderColor(color){
+        this.setState({
+            cancelBorderColor:color
+        })
+    }
+    setSureTitle(title){
+        this.setState({
+            sureTitle:title
+        })
+    }
+    setSureTitleColor(color){
+        this.setState({
+            sureTitleColor:color
+        })
+    }
+    setSureTitleSize(size){
+        this.setState({
+            sureTitleSize:size
+        })
+    }
+    setSureBgColor(color){
+        this.setState({
+            sureBgColor:color
+        })
+    }
+    setHideLeftBtn(isHide){
+        this.setState({
+            hideLeftBtn:isHide
+        })
+    }
     clickBlank(){
         console.log("---点击了-----")
        if (this.state.isBlank)  this.hide();
@@ -292,29 +404,36 @@ export class CHAlertModal extends Component {
                 style={{flex:1}}
                 hardwareAccelerated={true}
             >
+                <View style={{backgroundColor:'rgba(0,0,0,0.2)',flex:1,alignItems:'center',justifyContent:'center'}}
+                >
 
-                <View style={{backgroundColor:'rgba(0,0,0,0.2)',flex:1,alignItems:'center',justifyContent:'center'}}>
-                    <View style={{marginLeft:25,marginRight:25,backgroundColor:this.state.alertBgColor,borderRadius:5}}>
+                    <TouchableOpacity style={{flex:1,backgroundColor:'',width:'100%'}}
+                                      onPress={()=>this.clickBlank()}
+                    ></TouchableOpacity>
+                    <View style={{marginLeft:30,marginRight:30,backgroundColor:this.state.alertBgColor,borderRadius:5}}>
 
-                        <View style={{height:40,flexDirection:'row',backgroundColor:''}}>
-                            <View style={{width:60}}></View>
-                            <View style={{flex:1,alignItems:'center',height:40,justifyContent:'center'}}>
-                                <Text style={{fontSize:this.state.titleSize,color:this.state.titleColor}}>{this.state.titleName}</Text>
+                        {
+                            <View style={{height:40,flexDirection:'row',backgroundColor:''}}>
+                                <View style={{width:60}}></View>
+                                <View style={{flex:1,alignItems:'center',height:40,justifyContent:'center'}}>
+                                    <Text style={{fontSize:this.state.titleSize,color:this.state.titleColor}}>{this.state.titleName}</Text>
+                                </View>
+                                <TouchableOpacity style={{width:60,backgroundColor:'',alignItems:'flex-end',marginRight:5,marginTop:5}}
+
+                                >
+                                </TouchableOpacity>
                             </View>
-                            <TouchableOpacity style={{width:60,backgroundColor:'',alignItems:'flex-end',marginRight:5,marginTop:5}}
-                                              onPress={()=>this.hide()}
-                            >
-                            </TouchableOpacity>
-                        </View>
+                        }
 
 
-                        <View style={{justifyContent:'center',backgroundColor:'',marginRight:5,marginLeft:5}}>
+                        {
+                            <View style={{justifyContent:'center',backgroundColor:'',marginRight:5,marginLeft:5}}>
 
                                 <View style={[{},this.state.contentTitle.length<=40?{height:80}:null]}>
                                     <Text style={{
                                         color:this.state.contentColor,
                                         fontSize:this.state.contentSize,
-                                        textAlign:'justify',
+                                        textAlign:'left',
                                         textAlignVertical:'auto'
                                     }}>
                                         {this.state.contentTitle}
@@ -323,44 +442,54 @@ export class CHAlertModal extends Component {
 
 
 
-                        </View>
-
-
-                        {         <View style={{width:'100%',height:60,backgroundColor:'',flexDirection:'row'}}>
-
-
-                            <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-                                <TouchableOpacity
-                                    style={{justifyContent:'center',
-                                        alignItems:'center',
-                                        width:'80%',height:34,
-                                        borderColor:'#D0D0D0',
-                                        borderWidth:0.5,
-                                        borderRadius:3
-                                    }}
-                                    onPress={()=>this.clickCancelBtn()}
-                                >
-                                    <Text style={{color:'#8C8C8C',fontSize:15}}>{this.state.cancelTitle}</Text>
-                                </TouchableOpacity>
                             </View>
-                            <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-                                <TouchableOpacity
-                                    style={{justifyContent:'center',
-                                        alignItems:'center',
-                                        width:'80%',height:34,
-                                        borderColor:'#D0D0D0',
-                                        borderWidth:0.5,
-                                        backgroundColor:'#148BFA',
-                                        borderRadius:3
-                                    }}
-                                    onPress={()=>this.clickSureBtn()}
-                                >
-                                    <Text style={{color:'#fff',fontSize:15}}>{this.state.sureTitle}</Text>
-                                </TouchableOpacity>
+                        }
+
+
+                        {
+                            <View style={{width:'100%',height:60,backgroundColor:'',flexDirection:'row'}}>
+
+
+                                {!this.state.hideLeftBtn?
+                                    <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+                                    <TouchableOpacity
+                                        style={{justifyContent:'center',
+                                            alignItems:'center',
+                                            width:'80%',height:34,
+                                            borderColor:this.state.cancelBorderColor,
+                                            borderWidth:0.5,
+                                            borderRadius:3
+                                        }}
+                                        onPress={()=>this.clickCancelBtn()}
+                                    >
+                                        <Text style={{color:this.state.cancelTitleColor,fontSize:this.state.cancelTitleSize}}>{this.state.cancelTitle}</Text>
+                                    </TouchableOpacity>
+                                </View>:null
+                                }
+
+                                <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+                                    <TouchableOpacity
+                                        style={{justifyContent:'center',
+                                            alignItems:'center',
+                                            width:'80%',height:34,
+                                            borderColor:'#D0D0D0',
+                                            borderWidth:0.5,
+                                            backgroundColor:this.state.sureBgColor,
+                                            borderRadius:3
+                                        }}
+                                        onPress={()=>this.clickSureBtn()}
+                                    >
+                                        <Text style={{color:this.state.sureTitleColor,fontSize:this.state.sureTitleSize}}>{this.state.sureTitle}</Text>
+                                    </TouchableOpacity>
+                                </View>
                             </View>
-                        </View>}
+                        }
 
                     </View>
+
+                    <TouchableOpacity style={{flex:1,backgroundColor:'',width:'100%'}}
+                                      onPress={()=>this.clickBlank()}
+                    ></TouchableOpacity>
 
                 </View>
 
@@ -369,6 +498,7 @@ export class CHAlertModal extends Component {
         )
     }
 }
+
 
 
 
