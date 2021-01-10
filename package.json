@@ -12,6 +12,7 @@
   "dependencies": {
     "react": "16.13.1",
     "react-native": "0.63.4",
+    "react-native-ch-alert": "^0.0.1",
     "react-native-ch-loading": "^0.0.7"
   },
   "devDependencies": {

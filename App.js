@@ -21,9 +21,7 @@ import {
 
 
 import  CHLoading ,{Loading} from 'react-native-ch-loading'
-import CHAlert, {CHAlertModal} from "./CHAlertModal";
-
-
+import  CHAlertModal ,{Alert} from 'react-native-ch-alert'
 
 
 
@@ -58,7 +56,7 @@ class App extends React.Component{
 
     defaultAlert(){
 
-        CHAlert
+        Alert
             .show()
             .setTitleName("弹出框")
             .setTitleColor('#f0f')
@@ -79,14 +77,14 @@ class App extends React.Component{
             .setHideLeftBtn(true)
 
 
-        CHAlert.sureCallBack(function () {
+        Alert.sureCallBack(function () {
             console.log("----点击了-----")
-            CHAlert.hide()
+            Alert.hide()
         })
 
-        CHAlert.cancelCallBack(function () {
+        Alert.cancelCallBack(function () {
 
-            CHAlert.hide()
+            Alert.hide()
             console.log("-------点击了取消----")
         })
 
@@ -143,9 +141,6 @@ class App extends React.Component{
                 />
               <CHLoading/>
                 <CHAlertModal
-                    // ref={(self)=>this.sureUrgeModel=self}
-                    titleName={'温馨提示'}
-                    callBack={()=>this.sureUrgeModelCallBack()}
                 />
             </View>
 

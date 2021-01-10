@@ -50,6 +50,13 @@ export default {
     },
 
     /**
+     * 隐藏
+     */
+    hide:function () {
+        alert.hide()
+    },
+
+    /**
      * 设置提示文字
      * @returns {default}
      */
@@ -138,14 +145,29 @@ export default {
         alert.setSureTitle(title)
         return this
     },
+    /**
+     * 确定按钮字体颜色
+     * @param title
+     * @returns {default}
+     */
     setSureTitleColor:function(title){
         alert.setSureTitleColor(title)
         return this
     },
+    /**
+     * 确定按钮字体大小
+     * @param size
+     * @returns {default}
+     */
     setSureTitleSize:function(size){
         alert.setSureTitleSize(size)
         return this
     },
+    /**
+     * 确定按钮背景颜色
+     * @param color
+     * @returns {default}
+     */
     setSureBgColor:function(color){
         alert.setSureBgColor(color)
         return this
@@ -159,30 +181,44 @@ export default {
         alert.setCancelTitle(title)
         return this
     },
+    /**
+     * 取消按钮字体颜色
+     * @param color
+     * @returns {default}
+     */
     setCancelTitleColor:function(color){
         alert.setCancelTitleColor(color)
         return this
     },
+    /**
+     * 取消按钮字体大小
+     * @param size
+     * @returns {default}
+     */
     setCancelTitleSize:function(size){
       alert.setCancelTitleSize(size)
         return this
     },
+    /**
+     * 取消按钮边框颜色
+     * @param color
+     * @returns {default}
+     */
     setCancelBorderColor:function(color){
 
         alert.setCancelBorderColor(color)
         return this
     },
+    /**
+     * 是否隐藏左边按钮
+     * @param isHide
+     * @returns {default}
+     */
     setHideLeftBtn:function(isHide){
         alert.setIsBlankHide(isHide)
         return this
     },
 
-    /**
-     * 点击了隐藏按钮回调
-     */
-    hide:function () {
-        alert.hide()
-    },
 
 }
 
