@@ -55,9 +55,7 @@ class App extends React.Component{
     }
 
     defaultAlert(){
-
-        Alert
-            .show()
+        Alert.show()
             .setTitleName("弹出框")
             .setTitleColor('#f0f')
             .setTitleSize(16)
@@ -68,13 +66,13 @@ class App extends React.Component{
             .setCancelTitle("左边")
             .setIsBlankHide(false)
             .setCancelTitleColor('#f0f')
-            .setCancelTitleSize(20)
+            .setCancelTitleSize(15)
             .setCancelBorderColor('#f0f')
             .setSureTitle("右边")
             .setSureTitleColor('#f0f')
-            .setSureTitleSize(20)
+            .setSureTitleSize(15)
             .setSureBgColor('#0ff')
-            .setHideLeftBtn(true)
+            .setHideLeftBtn(false)
 
 
         Alert.sureCallBack(function () {
@@ -103,11 +101,8 @@ class App extends React.Component{
             .setTextSize(20)
             .setIndicatorSize('large')
 
-        setTimeout(function () {
+        Loading.afterHide(3000)
 
-            Loading.hide()
-
-        },3000)
     }
 
     itemView({item,index}){
@@ -133,7 +128,7 @@ class App extends React.Component{
         return(
 
 
-            <View>
+            <SafeAreaView>
                 <FlatList
                     data={Titles}
                     renderItem={this.itemView.bind(this)}
@@ -142,7 +137,7 @@ class App extends React.Component{
               <CHLoading/>
                 <CHAlertModal
                 />
-            </View>
+            </SafeAreaView>
 
         )
     }
